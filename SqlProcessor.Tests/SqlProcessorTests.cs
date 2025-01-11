@@ -546,7 +546,7 @@ WHERE  test <= (SELECT 1
             var parser = new TSql130Parser(true);
 
             var tree = parser.Parse(reader, out var errors);
-            if (errors?.Count > 0)
+            if (errors.Count > 0)
             {
                 throw new Exception($"Thrown errors in query: {string.Join(",", errors.Select(i => i.Message))}");
             }
@@ -704,7 +704,7 @@ WHERE  test <= (SELECT 1
             var parser = new TSql130Parser(true);
 
             var tree = parser.Parse(reader, out var errors);
-            if (errors?.Count > 0)
+            if (errors.Count > 0)
             {
                 throw new Exception($"Thrown errors in query: {string.Join(",", errors.Select(i => i.Message))}");
             }

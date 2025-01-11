@@ -164,9 +164,7 @@ namespace SqlProcessor
             if (!ProcessWhereStep(node.SearchCondition, validateFunc: __validateAreAllConstantsCondition))
             {
                 // TODO: create a better error message
-
                 throw new InvalidOperationException("At least one filter condition must consist healthy query fragment, please validate it");
-
             }
 
             base.ExplicitVisit(node);
@@ -204,10 +202,7 @@ namespace SqlProcessor
 
             base.ExplicitVisit(node);
 
-            string GetColumnNameFromVariableName(string? variableName) =>
-                // variableName can be null
-                (variableName ?? string.Empty).Split('_')[^1];
-
+            string GetColumnNameFromVariableName(string? variableName) => (variableName ?? string.Empty).Split('_')[^1];
 
             ColumnReferenceExpression CreateMockedColumn(string requestedColumnName, Identifier alias, IList<Identifier> tableIdentifiers)
             {
@@ -232,12 +227,10 @@ namespace SqlProcessor
                     multiPartIdentifier.Identifiers.Add(new Identifier { Value = requestedColumnName });
                 }
 
-                var createColumnMock = new ColumnReferenceExpression()
+                return new ColumnReferenceExpression
                 {
                     MultiPartIdentifier = multiPartIdentifier
                 };
-
-                return createColumnMock;
             }
 
             WhereClause? GetEffectiveWhereClause(ColumnReferenceExpression column, WhereClause? appendTo = null)
@@ -360,7 +353,6 @@ namespace SqlProcessor
 
             static Exception CreateRestrictedQueryException(RestrictedQuery restrictedQuery) =>
                 new InvalidOperationException($"{restrictedQuery} is not allowed in the query in this tool. Please contact the DBA Team.");
-
         }
 
 
@@ -378,9 +370,6 @@ false      false      false
 ---------------------
                 The target is to have at least one healthy condition in the where subqueries to consider the whole query as healthy
              */
-
-
-            // TODO: collect the errors parts to
 
             return fragment switch
             {
