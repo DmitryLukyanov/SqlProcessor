@@ -16,8 +16,21 @@
       {
         "command": "queryreviewprocessor.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "queryreviewprocessor.executeSql",
+        "title": "Execute SQL"
       }
-    ]
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "queryreviewprocessor.executeSql",
+          "when": "resourceLangId == sql",
+          "group": "navigation@1"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
