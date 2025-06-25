@@ -13,10 +13,12 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('queryreviewprocessor.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from query-review-processor!');
+	const disposable = vscode.commands.registerCommand('queryreviewprocessor.helloWorld', async () => {
+		// Open a new untitled SQL editor
+		const doc = await vscode.workspace.openTextDocument({ language: 'sql', content: '-- Write your SQL here' });
+		await vscode.window.showTextDocument(doc, { preview: false });
+		// Optionally, show a message
+		vscode.window.showInformationMessage('SQL editor opened from query-review-processor!');
 	});
 
 	context.subscriptions.push(disposable);
