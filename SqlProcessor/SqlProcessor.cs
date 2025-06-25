@@ -500,8 +500,8 @@ false      false      false
                 switch (tableReference)
                 {
                     case QualifiedJoin qualifiedJoin:
-                        if (qualifiedJoin.FirstTableReference is NamedTableReference firstTable) yield return firstTable;
-                        if (qualifiedJoin.SecondTableReference is NamedTableReference secondtable) yield return secondtable;
+                        yield return EnsureTableIsValid(qualifiedJoin.FirstTableReference, nameof(qualifiedJoin.FirstTableReference));
+                        yield return EnsureTableIsValid(qualifiedJoin.SecondTableReference, nameof(qualifiedJoin.SecondTableReference));
                         break;
 
                     case NamedTableReference namedTableReference:
@@ -514,6 +514,18 @@ false      false      false
                     default:
                         // TODO: if we're here, then update the above condition
                         throw new NotSupportedException($"Table reference type {tableReference.GetType().Name} is not supported yet");
+                }
+            }
+
+            static NamedTableReference EnsureTableIsValid(TableReference tableReference, string key)
+            {
+                if (tableReference is NamedTableReference namedTable)
+                {
+                    return namedTable;
+                }
+                else
+                {
+                    throw new NotSupportedException($"{key} type {tableReference.GetType().Name} is not supported yet");
                 }
             }
         }
