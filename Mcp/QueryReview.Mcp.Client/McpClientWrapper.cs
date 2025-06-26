@@ -5,27 +5,12 @@ namespace QueryReview.Mcp.Client
 {
     internal class McpClientWrapper : IAsyncDisposable
     {
-        public static McpClientWrapper CreateFromCommandLineArguments(Uri endpoint, string[] args, bool streamProtocol)
-        {
-            (string Command, string[] Arguments) parsed = args switch
-            {
-                [var script] when script.EndsWith(".py") => ("python", args),
-                [var script] when script.EndsWith(".js") => ("node", args),
-                [var script] when
-                    Directory.Exists(script) ||
-                    (File.Exists(script) && script.EndsWith(".csproj"))
-                    => ("dotnet", ["run", "--project", script, "--no-build"]),
-                _ => throw new NotSupportedException("An unsupported server script was provided. Supported scripts are .py, .js, or .csproj")
-            };
-            return new McpClientWrapper(endpoint, parsed.Command, parsed.Arguments, streamProtocol);
-        }
-
         private readonly CancellationTokenSource _cancellationTokenSource;
         private readonly CancellationToken _cancellationToken;
         private readonly Lazy<Task<IMcpClient>> _client;
         private readonly HttpClient _httpClient;
 
-        public McpClientWrapper(Uri endpoint, string command, string[] arguments, bool streamProtocol)
+        public McpClientWrapper(Uri endpoint, bool streamProtocol)
         {
             _cancellationTokenSource = new CancellationTokenSource();
             _cancellationToken = _cancellationTokenSource.Token;

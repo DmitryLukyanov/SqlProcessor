@@ -3,10 +3,6 @@ using Microsoft.Extensions.Hosting;
 using QueryReview.Mcp.Client;
 using QueryReview.Mcp.Client.Configuration;
 
-#if DEBUG
-args = [Path.Combine("..", "..", "..", "..", "QueryReview.Mcp.Server", "QueryReview.Mcp.Server.csproj")];
-#endif
-
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.Configuration
@@ -17,9 +13,8 @@ builder.Configuration
 var mcpSettings = builder.Configuration.GetSection(McpServerSettings.SettingsKey).Get<McpServerSettings>()!;
 
 // setup client
-await using var mcpClient = McpClientWrapper.CreateFromCommandLineArguments(
+await using var mcpClient = new McpClientWrapper(
     endpoint: new Uri(mcpSettings.Endpoint),
-    args, 
     streamProtocol: true);
 
 var availableTools = await mcpClient.GetTools();
