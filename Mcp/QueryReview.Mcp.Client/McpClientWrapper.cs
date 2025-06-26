@@ -70,6 +70,10 @@ namespace QueryReview.Mcp.Client
         {
             // Default behavior when no options are provided
             pattern ??= streambleHttp ? "/" : "/sse"; // sse is hardcoded url segment related to legacy SSE transport
+            if (!string.IsNullOrWhiteSpace(pattern) && !endpoint.Segments[^1].Contains("/") && !endpoint.Segments[^1].Contains("/sse", StringComparison.OrdinalIgnoreCase))
+            {
+                endpoint = new Uri(endpoint, pattern);
+            }
 
             await using var transport = new SseClientTransport(
                 transportOptions ??
