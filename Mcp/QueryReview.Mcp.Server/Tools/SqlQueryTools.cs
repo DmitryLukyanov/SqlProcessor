@@ -13,8 +13,15 @@ namespace QueryReview.Mcp.Server.Tools
             [Description("The raw SQL query.")] string sqlQuery)
         {
             var processor = new SqlProcessor.TSqlQueryGenerator(sqlQuery, [], []);
-            var formattedQuery = processor.Render(out var createdParameters);
-            return formattedQuery;
+            try
+            {
+                var formattedQuery = processor.Render(out var createdParameters);
+                return formattedQuery;
+            }
+            catch (Exception ex)
+            {
+                return $"Formatting SQL query: '{sqlQuery}' has been failed with the following error: {ex}";
+            }
         }
 
         [McpServerTool]
