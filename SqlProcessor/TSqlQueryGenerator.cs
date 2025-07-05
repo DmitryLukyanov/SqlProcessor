@@ -1,5 +1,4 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
-using System.Data;
 
 namespace SqlProcessor
 {
@@ -202,7 +201,7 @@ namespace SqlProcessor
 
             base.ExplicitVisit(node);
 
-            string GetColumnNameFromVariableName(string? variableName) => (variableName ?? string.Empty).Split('_')[^1];
+            string GetColumnNameFromVariableName(string? variableName) => (variableName ?? string.Empty).Split('_').Last();
 
             ColumnReferenceExpression CreateMockedColumn(string requestedColumnName, Identifier alias, IList<Identifier> tableIdentifiers)
             {
