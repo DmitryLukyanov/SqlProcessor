@@ -54,7 +54,7 @@ namespace QueryReview.Test
                 """;
 
             var expected = VerifyCS
-                .Diagnostic("QueryReview")
+                .Diagnostic("TRSP01")
                 .WithLocation(0)
                 .WithMessage("The CommandText SQL query contains unexisted fields; review the embedded SQL.");
             await VerifyCS.VerifyCodeFixAsync(incomeSource, expected, fixedTest);

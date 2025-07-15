@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SqlProcessor\SqlProcessor.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\..\..\Processors\SqlProcessor\SqlProcessor.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\QueryReview.CodeFixes\QueryReview.CodeFixes.csproj"  OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\QueryReview\QueryReview.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 
