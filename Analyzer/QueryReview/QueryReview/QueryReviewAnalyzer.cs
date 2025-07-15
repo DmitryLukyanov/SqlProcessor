@@ -13,7 +13,7 @@ namespace QueryReview
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class QueryReviewAnalyzer : DiagnosticAnalyzer
     {
-        public const string DiagnosticId = "QueryReview"; // TODO: rename into TR01
+        public const string DiagnosticId = "TRSP01"; // TODO: rename into TR01
 
         private static readonly LocalizableString Title = "Review CommandText assignment";
         private static readonly LocalizableString MessageFormat = "The CommandText SQL query contains unexisted fields; review the embedded SQL.";
