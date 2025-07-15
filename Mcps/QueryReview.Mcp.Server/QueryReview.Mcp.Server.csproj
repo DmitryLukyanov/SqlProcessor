@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SqlProcessor\SqlProcessor.csproj" />
+    <ProjectReference Include="..\..\Processors\SqlProcessor\SqlProcessor.csproj" />
   </ItemGroup>
 
   <ItemGroup>

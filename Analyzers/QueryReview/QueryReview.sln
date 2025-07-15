@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryReviewAnalyzer.Tests",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlProcessor", "SqlProcessor", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlProcessor", "..\..\SqlProcessor\SqlProcessor.csproj", "{23B13CC4-F216-4494-2CEC-3EA86CCDD636}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlProcessor", "..\..\Processors\SqlProcessor\SqlProcessor.csproj", "{23B13CC4-F216-4494-2CEC-3EA86CCDD636}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlProcessor.Tests", "..\..\SqlProcessor.Tests\SqlProcessor.Tests.csproj", "{0A11A1A6-870D-E9C1-D935-B9F065F32FE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlProcessor.Tests", "..\..\Processors\SqlProcessor.Tests\SqlProcessor.Tests.csproj", "{0A11A1A6-870D-E9C1-D935-B9F065F32FE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryReview.Showcase", "QueryReview.Showcase\QueryReview.Showcase.csproj", "{B8088983-A0F7-4ABF-A80E-AFE8E31B9446}"
 EndProject
