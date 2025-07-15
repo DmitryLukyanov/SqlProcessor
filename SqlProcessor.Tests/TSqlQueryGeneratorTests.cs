@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace SqlProcessor.Tests
 {
-    public class SqlProcessorTests
+    public class TSqlQueryGeneratorTests
     {
         private static readonly IEnumerable<(string, string)> __requiredTablesDefinition =
         [
