@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryReview.Mcp.Client", "Q
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryReview.Mcp.Server", "QueryReview.Mcp.Server\QueryReview.Mcp.Server.csproj", "{B9C17722-5ACB-5335-F891-18139962F2EF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Processors", "Processors", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlProcessor", "..\Processors\SqlProcessor\SqlProcessor.csproj", "{7EAFFDA1-FCD3-9372-90CC-1638076173D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{B9C17722-5ACB-5335-F891-18139962F2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9C17722-5ACB-5335-F891-18139962F2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9C17722-5ACB-5335-F891-18139962F2EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAFFDA1-FCD3-9372-90CC-1638076173D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAFFDA1-FCD3-9372-90CC-1638076173D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAFFDA1-FCD3-9372-90CC-1638076173D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAFFDA1-FCD3-9372-90CC-1638076173D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7EAFFDA1-FCD3-9372-90CC-1638076173D5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFA0E270-8868-434D-B3E9-1DDCC9B478D3}
