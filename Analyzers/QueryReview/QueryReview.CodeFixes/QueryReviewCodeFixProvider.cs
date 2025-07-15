@@ -31,13 +31,9 @@ namespace QueryReview
             }
         }
 
-        public sealed override FixAllProvider GetFixAllProvider()
-        {
+        public sealed override FixAllProvider GetFixAllProvider() =>
             // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/FixAllProvider.md for more information on Fix All Providers
-            var batchFixer = WellKnownFixAllProviders.BatchFixer;
-            var allScopes = batchFixer.GetSupportedFixAllScopes();
-            return batchFixer;
-        }
+            WellKnownFixAllProviders.BatchFixer;
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
@@ -62,7 +58,9 @@ namespace QueryReview
                 diagnostic);
         }
 
+#pragma warning disable IDE0060 // Remove unused parameter
         private async Task<Solution> FixSelectQueryAsync(CodeFixContext context, TypeDeclarationSyntax typeDecl, CancellationToken cancellationToken)
+#pragma warning restore IDE0060 // Remove unused parameter
         {
             var document = context.Document;
 

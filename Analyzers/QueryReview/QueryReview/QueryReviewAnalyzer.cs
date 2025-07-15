@@ -26,7 +26,7 @@ namespace QueryReview
             ("CustomersTable", ["Name", "LastName"])
         ];
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
+        private static readonly DiagnosticDescriptor Rule = new(
             DiagnosticId,
             Title,
             MessageFormat,
@@ -77,12 +77,14 @@ namespace QueryReview
                 sqlText,
                 tablesInfo: __tablesInfo);
 
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             if (!generator.TryValidate(out var errorMessage))
             {
                 // Report the diagnostic at the property access location
                 var diagnostic = Diagnostic.Create(Rule, sqlOp.Syntax.GetLocation());
                 context.ReportDiagnostic(diagnostic);
             }
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
         }
     }
 }

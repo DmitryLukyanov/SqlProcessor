@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Testing;
 
-namespace QueryReview.Test.Helpers
+namespace QueryReviewAnalyzer.Tests.Helpers
 {
     public class Test<TAnalyzer, TCodeFix> :
         CSharpCodeFixTest<TAnalyzer, TCodeFix, DefaultVerifier>
