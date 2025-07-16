@@ -14,5 +14,6 @@ internal class Program
         var result = command.ExecuteScalar();
 #pragma warning restore IDE0079 // Remove unnecessary suppression
         Console.WriteLine(result);
+
     }
 }

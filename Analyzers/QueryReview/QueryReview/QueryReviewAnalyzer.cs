@@ -16,7 +16,7 @@ namespace QueryReview
         public const string DiagnosticId = "TRSP01"; // TODO: rename into TR01
 
         private static readonly LocalizableString Title = "Review CommandText assignment";
-        private static readonly LocalizableString MessageFormat = "The CommandText SQL query contains unexisted fields; review the embedded SQL.";
+        private static readonly LocalizableString MessageFormat = "The CommandText SQL query contains unexisted fields; review the embedded SQL";
         private static readonly LocalizableString Description = "Detects direct assignments to ADO.NET CommandText property so that SQL strings can be audited or parameterised.";
         private const string Category = "Security";
 
@@ -35,7 +35,7 @@ namespace QueryReview
             isEnabledByDefault: true,
             description: Description);
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
         public override void Initialize(AnalysisContext context)
         {
@@ -44,7 +44,7 @@ namespace QueryReview
             context.EnableConcurrentExecution();
 
             // Trigger for every simple assignment (includes object‑initialiser assignments)
-            context.RegisterOperationAction(AnalyzeAssignment, OperationKind.SimpleAssignment);
+            context.RegisterOperationAction(AnalyzeAssignment, operationKinds: OperationKind.SimpleAssignment);
         }
 
         private static void AnalyzeAssignment(OperationAnalysisContext context)
@@ -65,10 +65,10 @@ namespace QueryReview
             }
 
             // Try to extract the string being assigned
-            var sqlOp = assignment.Value;
+            var sqlOperation = assignment.Value;
 
             // works for string literals and compile‑time concatenations like "SELECT " + "1"
-            if (!sqlOp.ConstantValue.HasValue || sqlOp.ConstantValue.Value is not string sqlText)
+            if (!sqlOperation.ConstantValue.HasValue || sqlOperation.ConstantValue.Value is not string sqlText)
             {
                 return;
             }
@@ -81,7 +81,7 @@ namespace QueryReview
             if (!generator.TryValidate(out var errorMessage))
             {
                 // Report the diagnostic at the property access location
-                var diagnostic = Diagnostic.Create(Rule, sqlOp.Syntax.GetLocation());
+                var diagnostic = Diagnostic.Create(Rule, sqlOperation.Syntax.GetLocation());
                 context.ReportDiagnostic(diagnostic);
             }
 #pragma warning restore IDE0059 // Unnecessary assignment of a value

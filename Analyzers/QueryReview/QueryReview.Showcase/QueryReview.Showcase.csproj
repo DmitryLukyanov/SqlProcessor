@@ -18,13 +18,13 @@
     <ProjectReference Include="..\QueryReview.CodeFixes\QueryReview.CodeFixes.csproj"  OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\QueryReview\QueryReview.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 
-      <PackageReference Include="Microsoft.SqlServer.TransactSql.ScriptDom"
-                           Version="170.64.0"
-                           GeneratePathProperty="true"
-                           PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SqlServer.TransactSql.ScriptDom"
+                         Version="170.64.0"
+                         GeneratePathProperty="true"
+                         PrivateAssets="all" />
 
-      <!--TODO: review it-->
-      <Analyzer Include="$(PkgMicrosoft_SqlServer_TransactSql_ScriptDom)\lib\netstandard2.0\Microsoft.SqlServer.TransactSql.ScriptDom.dll" />
+    <!--TODO: review it-->
+    <Analyzer Include="$(PkgMicrosoft_SqlServer_TransactSql_ScriptDom)\lib\netstandard2.0\Microsoft.SqlServer.TransactSql.ScriptDom.dll" />
   </ItemGroup>
 
 </Project>
