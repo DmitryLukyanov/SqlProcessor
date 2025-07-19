@@ -2,7 +2,7 @@
     QueryReview.QueryReviewAnalyzer,
     QueryReview.QueryReviewCodeFixProvider>;
 
-namespace QueryReview.Test
+namespace QueryReviewAnalyzer.Tests
 {
     public class QueryReviewUnitTest
     {
@@ -56,7 +56,7 @@ namespace QueryReview.Test
             var expected = VerifyCS
                 .Diagnostic("TRSP01")
                 .WithLocation(0)
-                .WithMessage("The CommandText SQL query contains unexisted fields; review the embedded SQL.");
+                .WithMessage("The CommandText SQL query contains unexisted fields; review the embedded SQL");
             await VerifyCS.VerifyCodeFixAsync(incomeSource, expected, fixedTest);
         }
     }

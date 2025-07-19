@@ -4,9 +4,8 @@ using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.Data.SqlClient;
-using QueryReviewAnalyzer.Tests.Helpers;
 
-namespace QueryReview.Test.Helpers
+namespace BestPractices.Tests.Helpers
 {
     public static class CodeFixVerifier<TAnalyzer, TCodeFix>
         where TAnalyzer : DiagnosticAnalyzer, new()
@@ -41,22 +40,33 @@ namespace QueryReview.Test.Helpers
             => await VerifyCodeFixAsync(source, DiagnosticResult.EmptyDiagnosticResults, fixedSource);
 
         /// <inheritdoc cref="CodeFixVerifier{TAnalyzer, TCodeFix, TTest, TVerifier}.VerifyCodeFixAsync(string, DiagnosticResult, string)"/>
-        public static async Task VerifyCodeFixAsync(string source, DiagnosticResult expected, string fixedSource)
-            => await VerifyCodeFixAsync(source, new[] { expected }, fixedSource);
+        public static async Task VerifyCodeFixAsync(string source, DiagnosticResult expected, string? fixedSource)
+            => await VerifyCodeFixAsync(source, [expected], fixedSource);
 
         /// <inheritdoc cref="CodeFixVerifier{TAnalyzer, TCodeFix, TTest, TVerifier}.VerifyCodeFixAsync(string, DiagnosticResult[], string)"/>
-        public static async Task VerifyCodeFixAsync(string source, DiagnosticResult[] expected, string fixedSource)
+        public static async Task VerifyCodeFixAsync(string source, DiagnosticResult[] expected, string? fixedSource)
         {
-            var test = new Test<TAnalyzer, TCodeFix>
-            {
-                TestState = 
+            var test =
+                fixedSource is not null
+                ? new Test<TAnalyzer, TCodeFix>
                 {
-                    Sources = { source },
-                    ReferenceAssemblies = ReferenceAssemblies.Net.Net80,
-                    AdditionalReferences = { MetadataReference.CreateFromFile(typeof(SqlConnection).Assembly.Location) }
-                },
-                FixedState = { Sources = { fixedSource } }
-            };
+                    TestState =
+                    {
+                        Sources = { source },
+                        ReferenceAssemblies = ReferenceAssemblies.Net.Net80,
+                        AdditionalReferences = { MetadataReference.CreateFromFile(typeof(SqlConnection).Assembly.Location) }
+                    },
+                    FixedState = { Sources = { fixedSource } }
+                } 
+                : new Test<TAnalyzer, TCodeFix>
+                {
+                    TestState =
+                    {
+                        Sources = { source },
+                        ReferenceAssemblies = ReferenceAssemblies.Net.Net80,
+                        AdditionalReferences = { MetadataReference.CreateFromFile(typeof(SqlConnection).Assembly.Location) }
+                    },
+                };
 
             test.ExpectedDiagnostics.AddRange(expected);
             await test.RunAsync(CancellationToken.None);
