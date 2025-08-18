@@ -1,6 +1,7 @@
 ## Highlevel steps
 
 1.  Choose method/class for generating unit tests from. Use roslyn plugin to embed it into VS.
+
     _Notes_:
 
     - See `UnitTestsGenerator.CodeRefactoring`. Currently there is just a button in VS, the sending request to AI agent (see `UnitTestsGenerator.AI.Agent`) is pending for implementation
@@ -11,12 +12,13 @@
       - The path
       - Possibly, the path to project where unit tests are placed
 
-2.  `UnitTestsGenerator.AI.Agent` - currently it's console application, but it should be changed to web app.
-3.  The app consist of 2 AI agents:
+3.  `UnitTestsGenerator.AI.Agent` - currently it's console application, but it should be changed to web app.
+4.  The app consist of 2 AI agents:
 
     - **Developer** - generates unit tests bases on the provided requirements
     - **Tester** - validate it. If something is wrong, the output from `Tester` will be provided to the `Developer` agent and based on the feedback, the developer will update the created unit tests
       3.1. As part of the validating, the tests must be launched.
+      
       _Notes_:
 
       - It's easy to do for methods that has only independent logic.
